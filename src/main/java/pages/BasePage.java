@@ -2,15 +2,17 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 abstract class BasePage {
-    WebDriver driver;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    WebDriverWait wait = new WebDriverWait(getWebDriver(), Duration.ofSeconds(30));
+
+    public BasePage() {
     }
 
-    public void openPage(String url) {
-        driver.get(url);
-    }
 }

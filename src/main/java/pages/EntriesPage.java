@@ -1,12 +1,15 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class EntriesPage {
 
-    WebDriver driver;
-
-    public EntriesPage(WebDriver driver) {
-        this.driver = driver;
+    public EntriesPage() {
     }
+
+    private static final SelenideElement USER_INPUT = $("#create-entry");
+
 }

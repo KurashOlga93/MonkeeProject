@@ -1,22 +1,26 @@
 package steps;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 public class LoginSteps {
 
-    private final LoginPage loginPage;
+    LoginPage loginPage;
 
-    public LoginSteps(WebDriver driver) {
-        loginPage = new LoginPage(driver);
+    public LoginSteps() {
+        this.loginPage = new LoginPage();
     }
 
-    @Step("Login and wait for page loaded")
-    public LoginSteps loginAndWaitForPageOpened(String username, String password) {
-        loginPage.openPage("https://monkkee.com/app/#/");
-        loginPage
-                .login(username, password);
-        return this;
+    @Step("Login by user: {email}")
+    public void login(String email, String password, String url) {
+        loginPage.openLoginPage(url)
+                .login(email, password);
+    }
+
+    @Step("Login by user: {email} and Logout")
+    public void loginAndLogout(String email, String password, String url) {
+        loginPage.openLoginPage(url)
+                .login(email, password);
+        loginPage.logout();
     }
 }
