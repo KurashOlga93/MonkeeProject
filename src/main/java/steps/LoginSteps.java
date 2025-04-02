@@ -17,6 +17,12 @@ public class LoginSteps {
                 .login(email, password);
     }
 
+    @Step("Login by user: {email}")
+    public void loginWithError(String email, String password, String url) {
+        loginPage.openLoginPage(url)
+                .loginWithError(email, password);
+    }
+
     @Step("Login by user: {email} and Logout")
     public void loginAndLogout(String email, String password, String url) {
         loginPage.openLoginPage(url)

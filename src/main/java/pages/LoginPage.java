@@ -2,10 +2,12 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.codeborne.selenide.Selenide.*;
-
+@Getter
 @Log4j2
 public class LoginPage extends BasePage {
 
@@ -16,7 +18,8 @@ public class LoginPage extends BasePage {
     public static final SelenideElement PASSWORD_FIELD_ERROR_MESSAGE = $x("//div[contains(@class, 'password')]/following-sibling::div[contains(@class, 'help-block')]");
     public static final SelenideElement ALERT_DANGER = $x("//*[@class='alert alert-danger']");
     public static final SelenideElement LOGOUT_BUTTON = $x("//*[text()='Logout']");
-
+    private final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
+    private final SelenideElement loginHeaderText = $x("//*[@class='login__heading']");
 
     public LoginPage() {
     }
@@ -31,36 +34,31 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public EntriesPage login(String username, String password) {
+    public LoginPage fillLoginForm(String username, String password) {
         isOpened();
         USER_INPUT.setValue(username);
         PASSWORD_INPUT.setValue(password);
         LOGIN_BUTTON.click();
+        return new LoginPage();
+    }
+
+    public EntriesPage login(String username, String password) {
+        isOpened();
+        fillLoginForm(username, password);
+        wait.until(ExpectedConditions.visibilityOf(createEntryButton));
         return new EntriesPage();
     }
+
+    public LoginPage loginWithError(String username, String password) {
+      isOpened();
+      fillLoginForm(username, password);
+      return new LoginPage();
+  }
 
     public LoginPage logout() {
         LOGOUT_BUTTON.click();
         return new LoginPage();
     }
-
-//    public EntriesPage login(String username, String password) {
-//        isOpened();
-//        fillLoginForm()
-//        return new EntriesPage();
-//    }
-//
-//    public EntriesPage loginWithError(String username, String password) {
-//        isOpened();
-//        fillLoginForm()
-//        return new EntriesPage();
-//    }
-//
-//    метод возвра логин пейдж
-//    fillLoginForm
-//    USER_INPUT.setValue(username);
-//        PASSWORD_INPUT.setValue(password);
-//        LOGIN_BUTTON.click();
 
     public String getUserFieldErrorMessageText() {
        return USER_FIELD_ERROR_MESSAGE.getText();

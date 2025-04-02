@@ -2,14 +2,19 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
-public class EntriesPage {
+@Getter
+public class EntriesPage extends BasePage {
 
     public EntriesPage() {
     }
 
-    private static final SelenideElement USER_INPUT = $("#create-entry");
+    private final SelenideElement USER_INPUT = $("#create-entry");
+    private final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
+
 
 }

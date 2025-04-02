@@ -8,8 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import pages.EntriesPage;
 import pages.LoginPage;
 import steps.LoginSteps;
+import utils.PropertyReader;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,12 +21,18 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 @Listeners(TestListener.class)
 public class BaseTest {
 
+    public static String USER = PropertyReader.getProperty("user");
+    public static String PASSWORD = PropertyReader.getProperty("password");
+    public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
+
     protected LoginSteps loginSteps;
     protected LoginPage loginPage;
+    protected EntriesPage entriesPage;
 
     public void initPages() {
         loginSteps = new LoginSteps();
         loginPage = new LoginPage();
+        entriesPage = new EntriesPage();
     }
 
     @BeforeMethod
