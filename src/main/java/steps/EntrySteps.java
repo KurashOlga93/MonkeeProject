@@ -21,19 +21,19 @@ public class EntrySteps {
         entryPage.saveEntry();
     }
 
-    @Step("Open exist entry6 edit text and save")
+    @Step("Open exist entry, edit text and save")
     public void editExistEntryAndSave(String text) {
         entryListPage.getEntriesBody().click();
         entryPage.fillEntryForm(text);
         entryPage.saveEntry();
     }
 
-    @Step("Open exist entry6 edit text and save")
+    @Step("Select first entry by checkbox and delete")
     public void deleteFirstEntry() {
         entryListPage.deleteFirstEntry();
     }
 
-    @Step("Open exist entry6 edit text and save")
+    @Step("Select all entries by main checkbox and delete")
     public void deleteAllEntries() {
         entryListPage.deleteAllEntries();
     }

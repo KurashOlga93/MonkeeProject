@@ -20,6 +20,8 @@ public class LoginPage extends BasePage {
     public static final SelenideElement LOGOUT_BUTTON = $x("//*[text()='Logout']");
     private final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
     private final SelenideElement loginHeaderText = $x("//*[@class='login__heading']");
+    private final String validationMessageText = "Mandatory field";
+
 
     public LoginPage() {
     }

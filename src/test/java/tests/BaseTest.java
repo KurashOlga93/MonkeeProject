@@ -19,6 +19,7 @@ import utils.PropertyReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 @Listeners(TestListener.class)
@@ -31,6 +32,7 @@ public class BaseTest {
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
     public static String ENTRY_TEXT = PropertyReader.getProperty("entryText");
     public static String ENTRY_TEXT1 = PropertyReader.getProperty("entryText1");
+    public static String ENTRIES_URL = PropertyReader.getProperty("entriesUrl");
 
     protected LoginSteps loginSteps;
     protected LoginPage loginPage;
@@ -66,5 +68,9 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void endTest() {
+//        open(ENTRIES_URL);
+//        if (!entryListPage.getEntriesList().isEmpty()) {
+//            entryListPage.deleteAllEntries();
+//        }
     }
 }

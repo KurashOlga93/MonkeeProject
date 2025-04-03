@@ -5,48 +5,48 @@ import org.testng.annotations.Test;
 
 public class EntriesTests extends BaseTest {
 
-    @Test
+    @Test(description = "Login user, create new entry and check body text of created entry")
     public void createEntryTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         Assert.assertEquals(entryListPage.getFirstEntryBody().getText(), "This is my first note.");
     }
 
-    @Test
+    @Test(description = "Login user, create new entry, open created entry and edit text, check edited text")
     public void editEntryTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         entrySteps.editExistEntryAndSave(ENTRY_TEXT1);
+        entryListPage.checkEntriesListSize(1);
         softAssert.assertEquals(entryListPage.getFirstEntryBody().getText(), "I would like to add something else here...");
-        softAssert.assertEquals(entryListPage.checkEntriesListSize(), 1);
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(description = "Login user, create two entries, delete the first entry and check that one entry remains")
     public void deleteFirstEntryTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         entrySteps.deleteFirstEntry();
-        Assert.assertEquals(entryListPage.checkEntriesListSize(), 1);
+        entryListPage.checkEntriesListSize(1);
     }
 
-    @Test
+    @Test(description = "Login user, create two entries, delete all entries and check that there are no more entries")
     public void deleteAllEntriesTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         entrySteps.deleteAllEntries();
-        Assert.assertEquals(entryListPage.checkEntriesListSize(), 0);
+        entryListPage.checkEntriesListSize(0);
     }
 
-    @Test
+    @Test(description = "Login user, create two different entries, search the text of one of the entries and check that it was found")
     public void searchFieldTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
         entrySteps.createEntryAndSave(ENTRY_TEXT1);
-
-        softAssert.assertEquals(entryListPage.checkEntriesListSize(), 1);
+        entryListPage.searchByText("I would like")
+                    .checkEntriesListSize(1);
         softAssert.assertTrue(entryListPage.getFirstEntryBody().getText().contains("something"));
     }
 }
