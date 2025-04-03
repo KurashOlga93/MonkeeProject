@@ -8,9 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import org.testng.asserts.SoftAssert;
 import pages.EntryListPage;
 import pages.EntryPage;
 import pages.LoginPage;
+import steps.EntrySteps;
 import steps.LoginSteps;
 import utils.PropertyReader;
 
@@ -22,21 +24,26 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 @Listeners(TestListener.class)
 public class BaseTest {
 
+    SoftAssert softAssert = new SoftAssert();
+
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
     public static String ENTRY_TEXT = PropertyReader.getProperty("entryText");
+    public static String ENTRY_TEXT1 = PropertyReader.getProperty("entryText1");
 
     protected LoginSteps loginSteps;
     protected LoginPage loginPage;
     protected EntryListPage entryListPage;
     protected EntryPage entryPage;
+    protected EntrySteps entrySteps;
 
     public void initPages() {
         loginSteps = new LoginSteps();
         loginPage = new LoginPage();
         entryListPage = new EntryListPage();
         entryPage = new EntryPage();
+        entrySteps = new EntrySteps();
     }
 
     @BeforeMethod
