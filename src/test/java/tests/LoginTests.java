@@ -10,7 +10,7 @@ public class LoginTests extends BaseTest {
     @Test(retryAnalyzer = Retry.class)
     public void loginTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
-        entriesPage.getCreateEntryButton().shouldBe(Condition.visible);
+        entryListPage.getCreateEntryButton().shouldBe(Condition.visible);
     }
 
     @Test

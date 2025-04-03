@@ -8,7 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.EntriesPage;
+import pages.EntryListPage;
+import pages.EntryPage;
 import pages.LoginPage;
 import steps.LoginSteps;
 import utils.PropertyReader;
@@ -24,15 +25,18 @@ public class BaseTest {
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
+    public static String ENTRY_TEXT = PropertyReader.getProperty("entryText");
 
     protected LoginSteps loginSteps;
     protected LoginPage loginPage;
-    protected EntriesPage entriesPage;
+    protected EntryListPage entryListPage;
+    protected EntryPage entryPage;
 
     public void initPages() {
         loginSteps = new LoginSteps();
         loginPage = new LoginPage();
-        entriesPage = new EntriesPage();
+        entryListPage = new EntryListPage();
+        entryPage = new EntryPage();
     }
 
     @BeforeMethod
