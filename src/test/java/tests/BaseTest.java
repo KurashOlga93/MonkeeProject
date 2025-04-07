@@ -20,6 +20,7 @@ import utils.PropertyReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 @Listeners(TestListener.class)
