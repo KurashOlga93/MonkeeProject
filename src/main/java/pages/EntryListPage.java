@@ -5,9 +5,11 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
 import static com.codeborne.selenide.Selenide.*;
 
+@Log4j2
 @Getter
 public class EntryListPage extends BasePage {
 
@@ -32,6 +34,7 @@ public class EntryListPage extends BasePage {
     public EntryPage openEntryPage() {
         isOpened();
         createEntryButton.click();
+        log.info("Click 'Create new entry' button for open entry page");
         return new EntryPage();
     }
 
@@ -45,6 +48,8 @@ public class EntryListPage extends BasePage {
         DELETE_ENTRIES_BUTTON.click();
         switchTo().alert().accept();
         DELETE_ENTRIES_BUTTON.shouldNotBe(Condition.disabled);
+        log.info("Delete first entry");
+
         return new EntryListPage();
     }
 
@@ -54,12 +59,14 @@ public class EntryListPage extends BasePage {
         DELETE_ENTRIES_BUTTON.click();
         switchTo().alert().accept();
         DELETE_ENTRIES_BUTTON.shouldNotBe(Condition.disabled);
+        log.info("Delete all entries");
         return new EntryListPage();
     }
 
     public EntryListPage searchByText(String text) {
         SEARCH_FIELD.setValue(text);
         SEARCH_BUTTON.click();
+        log.info("Search by '{}' text", text);
         return new EntryListPage();
     }
 }

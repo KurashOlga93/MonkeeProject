@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>QaseSelenide</artifactId>
+    <artifactId>MonkeeProject</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -15,7 +15,7 @@
         <testng.version>7.4.0</testng.version>
         <webdrivermanager.version>5.9.3</webdrivermanager.version>
         <lombok.version>1.18.36</lombok.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
         <aspectjweaver.version>1.9.22</aspectjweaver.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <allure-testng.version>2.28.1</allure-testng.version>
@@ -23,6 +23,8 @@
         <log4j-core.version>2.20.0</log4j-core.version>
         <selenide.version>7.7.0</selenide.version>
         <selenide-core.version>7.7.0</selenide-core.version>
+        <selenium-java.version>4.28.1</selenium-java.version>
+
     </properties>
 
     <build>
@@ -70,6 +72,12 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>

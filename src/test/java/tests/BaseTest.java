@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -68,9 +69,10 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void endTest() {
-//        open(ENTRIES_URL);
-//        if (!entryListPage.getEntriesList().isEmpty()) {
-//            entryListPage.deleteAllEntries();
-//        }
+        open(ENTRIES_URL);
+        if (!entryListPage.getEntriesList().isEmpty()) {
+            entryListPage.deleteAllEntries();
+        }
+        WebDriverRunner.closeWebDriver();
     }
 }
