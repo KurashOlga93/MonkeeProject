@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import waiters.Waiter;
 
 import static com.codeborne.selenide.Selenide.*;
 @Getter
@@ -48,7 +47,7 @@ public class LoginPage extends BasePage {
     public EntryListPage login(String username, String password) {
         isOpened();
         fillLoginForm(username, password);
-        Waiter.waitForElementShouldBeVisible(createEntryButton);
+        wait.until(ExpectedConditions.visibilityOf(createEntryButton));
         return new EntryListPage();
     }
 

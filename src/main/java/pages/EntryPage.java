@@ -3,9 +3,12 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.codeborne.selenide.Selenide.$x;
 
+@Log4j2
 @Getter
 public class EntryPage extends BasePage{
 
@@ -21,6 +24,7 @@ public class EntryPage extends BasePage{
         ENTRY_AREA.click();
         ENTRY_TOOLBAR.shouldBe(Condition.visible);
         ENTRY_AREA.setValue(text);
+        log.info("Fill entry form with text: '{}'", text);
         return new EntryPage();
     }
 
