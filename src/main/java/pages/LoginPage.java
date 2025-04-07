@@ -27,12 +27,14 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage openLoginPage(String url){
+        log.info("Open login page URL {}", url);
         open(url);
         return this;
     }
 
     public LoginPage isOpened() {
         USER_INPUT.shouldBe(Condition.visible);
+        log.info("Page opened and element 'user' input is visible");
         return this;
     }
 
@@ -41,18 +43,18 @@ public class LoginPage extends BasePage {
         USER_INPUT.setValue(username);
         PASSWORD_INPUT.setValue(password);
         LOGIN_BUTTON.click();
+        log.info("User login with username '{}'", username);
         return new LoginPage();
     }
 
     public EntryListPage login(String username, String password) {
-        isOpened();
         fillLoginForm(username, password);
         wait.until(ExpectedConditions.visibilityOf(createEntryButton));
+        log.info("User login and see 'Create entry' button on the next page");
         return new EntryListPage();
     }
 
     public LoginPage loginWithError(String username, String password) {
-      isOpened();
       fillLoginForm(username, password);
       return new LoginPage();
   }
@@ -63,14 +65,20 @@ public class LoginPage extends BasePage {
     }
 
     public String getUserFieldErrorMessageText() {
-       return USER_FIELD_ERROR_MESSAGE.getText();
+        String errorMessageText = USER_FIELD_ERROR_MESSAGE.getText();
+        log.info("User field error message text is: {}", errorMessageText);
+       return errorMessageText;
     }
 
     public String getPasswordFieldErrorMessageText() {
-        return PASSWORD_FIELD_ERROR_MESSAGE.getText();
+        String errorMessageText = PASSWORD_FIELD_ERROR_MESSAGE.getText();
+        log.info("Password field error message text is: {}", errorMessageText);
+        return errorMessageText;
     }
 
     public String getErrorMessageAlertText() {
-        return ALERT_DANGER.getText();
+        String alertErrorMessageText = ALERT_DANGER.getText();
+        log.info("Alert error message text is: {}", alertErrorMessageText);
+        return alertErrorMessageText;
     }
 }
