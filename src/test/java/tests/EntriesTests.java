@@ -16,7 +16,7 @@ public class EntriesTests extends BaseTest {
     public void editEntryTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
-        entrySteps.editExistEntryAndSave(ENTRY_TEXT1);
+        entrySteps.editExistEntryAndSave(CHANGE_ENTRY_TEXT);
         entryListPage.checkEntriesListSize(1);
         softAssert.assertEquals(entryListPage.getFirstEntryBody().getText(), "I would like to add something else here...");
         softAssert.assertAll();
@@ -44,7 +44,7 @@ public class EntriesTests extends BaseTest {
     public void searchFieldTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.createEntryAndSave(ENTRY_TEXT);
-        entrySteps.createEntryAndSave(ENTRY_TEXT1);
+        entrySteps.createEntryAndSave(CHANGE_ENTRY_TEXT);
         entryListPage.searchByText("I would like")
                     .checkEntriesListSize(1);
         softAssert.assertTrue(entryListPage.getFirstEntryBody().getText().contains("something"));
