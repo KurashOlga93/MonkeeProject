@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import waiters.Waiter;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -29,6 +28,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage openLoginPage(String url){
         open(url);
+        log.info("Open login page with URL '{}'", url);
         return this;
     }
 
@@ -42,6 +42,7 @@ public class LoginPage extends BasePage {
         USER_INPUT.setValue(username);
         PASSWORD_INPUT.setValue(password);
         LOGIN_BUTTON.click();
+        log.info("Login user with username: '{}'", username);
         return new LoginPage();
     }
 
@@ -64,14 +65,21 @@ public class LoginPage extends BasePage {
     }
 
     public String getUserFieldErrorMessageText() {
-       return USER_FIELD_ERROR_MESSAGE.getText();
+        String userFieldErrorMessage = USER_FIELD_ERROR_MESSAGE.getText();
+        log.info("Error message text for user field is: '{}'", userFieldErrorMessage);
+        return userFieldErrorMessage;
     }
 
     public String getPasswordFieldErrorMessageText() {
-        return PASSWORD_FIELD_ERROR_MESSAGE.getText();
+        String passwordFieldErrorMessage = PASSWORD_FIELD_ERROR_MESSAGE.getText();
+        log.info("Error message text for password field is: '{}'", passwordFieldErrorMessage);
+        return passwordFieldErrorMessage;
     }
 
     public String getErrorMessageAlertText() {
-        return ALERT_DANGER.getText();
+        String alertErrorMessageText = ALERT_DANGER.getText();
+        log.info("Alert error message text for is: '{}'", alertErrorMessageText);
+        return alertErrorMessageText;
+
     }
 }
