@@ -20,23 +20,40 @@ public class LoginPage extends BasePage {
     public static final SelenideElement LOGOUT_BUTTON = $x("//*[text()='Logout']");
     private final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
     private final SelenideElement loginHeaderText = $x("//*[@class='login__heading']");
-    private final String validationMessageText = "Mandatory field";
 
 
     public LoginPage() {
     }
 
+    /**
+     * Open login page.
+     *
+     * @param url the url
+     * @return the login page
+     */
     public LoginPage openLoginPage(String url){
         open(url);
         log.info("Open login page with URL '{}'", url);
         return this;
     }
 
+    /**
+     * Is opened login page.
+     *
+     * @return the login page
+     */
     public LoginPage isOpened() {
         USER_INPUT.shouldBe(Condition.visible);
         return this;
     }
 
+    /**
+     * Fill login form login page.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the login page
+     */
     public LoginPage fillLoginForm(String username, String password) {
         isOpened();
         USER_INPUT.setValue(username);
@@ -46,6 +63,13 @@ public class LoginPage extends BasePage {
         return new LoginPage();
     }
 
+    /**
+     * Login entry list page.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the entry list page
+     */
     public EntryListPage login(String username, String password) {
         isOpened();
         fillLoginForm(username, password);
@@ -53,33 +77,59 @@ public class LoginPage extends BasePage {
         return new EntryListPage();
     }
 
+    /**
+     * Login with error login page.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the login page
+     */
     public LoginPage loginWithError(String username, String password) {
       isOpened();
       fillLoginForm(username, password);
       return new LoginPage();
   }
 
+    /**
+     * Logout login page.
+     *
+     * @return the login page
+     */
     public LoginPage logout() {
         LOGOUT_BUTTON.click();
         return new LoginPage();
     }
 
+    /**
+     * Gets user field error message text.
+     *
+     * @return the user field error message text
+     */
     public String getUserFieldErrorMessageText() {
         String userFieldErrorMessage = USER_FIELD_ERROR_MESSAGE.getText();
         log.info("Error message text for user field is: '{}'", userFieldErrorMessage);
         return userFieldErrorMessage;
     }
 
+    /**
+     * Gets password field error message text.
+     *
+     * @return the password field error message text
+     */
     public String getPasswordFieldErrorMessageText() {
         String passwordFieldErrorMessage = PASSWORD_FIELD_ERROR_MESSAGE.getText();
         log.info("Error message text for password field is: '{}'", passwordFieldErrorMessage);
         return passwordFieldErrorMessage;
     }
 
+    /**
+     * Gets error message alert text.
+     *
+     * @return the error message alert text
+     */
     public String getErrorMessageAlertText() {
         String alertErrorMessageText = ALERT_DANGER.getText();
         log.info("Alert error message text for is: '{}'", alertErrorMessageText);
         return alertErrorMessageText;
-
     }
 }

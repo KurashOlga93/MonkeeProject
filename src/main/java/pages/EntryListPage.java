@@ -26,11 +26,21 @@ public class EntryListPage extends BasePage {
     public EntryListPage() {
     }
 
+    /**
+     * Is opened entry list page.
+     *
+     * @return the entry list page
+     */
     public EntryListPage isOpened() {
         createEntryButton.shouldBe(Condition.visible);
         return this;
     }
 
+    /**
+     * Open entry page entry page.
+     *
+     * @return the entry page
+     */
     public EntryPage openEntryPage() {
         isOpened();
         createEntryButton.click();
@@ -38,10 +48,20 @@ public class EntryListPage extends BasePage {
         return new EntryPage();
     }
 
+    /**
+     * Check entries list size.
+     *
+     * @param size the size
+     */
     public void checkEntriesListSize(int size) {
         entriesList.shouldHave(CollectionCondition.size(size));
     }
 
+    /**
+     * Delete first entry entry list page.
+     *
+     * @return the entry list page
+     */
     public EntryListPage deleteFirstEntry() {
         FIRST_ENTRY_CHECKBOX.click();
         DELETE_ENTRIES_BUTTON.shouldBe(Condition.enabled);
@@ -49,10 +69,14 @@ public class EntryListPage extends BasePage {
         switchTo().alert().accept();
         DELETE_ENTRIES_BUTTON.shouldNotBe(Condition.disabled);
         log.info("Delete first entry");
-
         return new EntryListPage();
     }
 
+    /**
+     * Delete all entries on entry list page.
+     *
+     * @return the entry list page
+     */
     public EntryListPage deleteAllEntries() {
         ALL_ENTRIES_CHECKBOX.click();
         DELETE_ENTRIES_BUTTON.shouldBe(Condition.enabled);
@@ -63,6 +87,12 @@ public class EntryListPage extends BasePage {
         return new EntryListPage();
     }
 
+    /**
+     * Search by text on entry list page.
+     *
+     * @param text the text
+     * @return the entry list page
+     */
     public EntryListPage searchByText(String text) {
         SEARCH_FIELD.setValue(text);
         SEARCH_BUTTON.click();

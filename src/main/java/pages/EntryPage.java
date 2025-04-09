@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -20,6 +19,12 @@ public class EntryPage extends BasePage{
     public EntryPage() {
     }
 
+    /**
+     * Fill entry form on entry page.
+     *
+     * @param text the text
+     * @return the entry page
+     */
     public EntryPage fillEntryForm(String text) {
         ENTRY_AREA.click();
         ENTRY_TOOLBAR.shouldBe(Condition.visible);
@@ -28,6 +33,11 @@ public class EntryPage extends BasePage{
         return new EntryPage();
     }
 
+    /**
+     * Save entry on entry page.
+     *
+     * @return the entry list page
+     */
     public EntryListPage saveEntry() {
         SAVE_ENTRY_BUTTON.click();
         BACK_TO_OVERVIEW_BUTTON.click();
