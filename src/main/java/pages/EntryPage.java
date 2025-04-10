@@ -15,6 +15,7 @@ public class EntryPage extends BasePage{
     private static final SelenideElement BACK_TO_OVERVIEW_BUTTON = $x("//*[@id='back-to-overview']");
     private static final SelenideElement SAVE_ENTRY_BUTTON = $x("//*[@title='Save']");
     private static final SelenideElement ENTRY_TOOLBAR = $x("//*[@class='cke_top']");
+    private static final SelenideElement DATE_TIME_FIELD = $x("//*[@class='ng-binding']");
 
     public EntryPage() {
     }
@@ -42,5 +43,11 @@ public class EntryPage extends BasePage{
         SAVE_ENTRY_BUTTON.click();
         BACK_TO_OVERVIEW_BUTTON.click();
         return new EntryListPage();
+    }
+
+    public String getDateAndTimeWhenCreatingEntry() {
+        String creatingData = DATE_TIME_FIELD.getText();
+        log.info("Date and time of creating entry '{}'", creatingData);
+        return creatingData;
     }
 }

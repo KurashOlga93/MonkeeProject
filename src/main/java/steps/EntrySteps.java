@@ -1,11 +1,17 @@
 package steps;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.impl.Waiter;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import pages.EntryListPage;
 import pages.EntryPage;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class EntrySteps {
 
@@ -65,5 +71,15 @@ public class EntrySteps {
     @Step("Check first entry contains text")
     public void checkFirstEntryContainsText (String text) {
         Assert.assertTrue(entryListPage.getFirstEntryBody().getText().contains(text));
+    }
+
+    @Step("Check date and time of created entry")
+    public void checkDateAndTimeOfCreatedEntry (String text) {
+        entryListPage.openEntryPage();
+        entryPage.fillEntryForm(text);
+        String creatingData = entryPage.getDateAndTimeWhenCreatingEntry();
+        entryPage.saveEntry();
+        SelenideElement element = entryListPage.getDateAndTimeOfCreatedEntry(creatingData);
+        element.shouldBe(exist, Duration.ofSeconds(5));
     }
 }

@@ -6,6 +6,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -22,6 +23,8 @@ public class EntryListPage extends BasePage {
     private final SelenideElement entriesBody = $x("//*[@class=' entries__body']");
     private final SelenideElement firstEntryBody = $x("(//*[@class=' entries__body'])[1]");
     private final ElementsCollection entriesList = $$x("//*[contains(@class, 'entries__entry-container')]");
+    private final String entryCreatedDateAndTime = "//*[contains(@class,'full-date')][contains(text(),'%s')]";
+
 
     public EntryListPage() {
     }
@@ -98,5 +101,9 @@ public class EntryListPage extends BasePage {
         SEARCH_BUTTON.click();
         log.info("Search by '{}' text", text);
         return new EntryListPage();
+    }
+
+    public SelenideElement getDateAndTimeOfCreatedEntry(String creatingDate) {
+        return $x(entryCreatedDateAndTime.formatted(creatingDate));
     }
 }

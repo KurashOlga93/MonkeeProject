@@ -47,4 +47,11 @@ public class EntriesTests extends BaseTest implements ITestConstants {
                 .checkEntriesListSize(1)
                 .checkFirstEntryContainsText("something");
     }
+
+    @Test(description = "")
+    public void checkDateAndTimeOfEntry() {
+        loginSteps.login(USER, PASSWORD, LOGIN_URL);
+        entrySteps.checkDateAndTimeOfCreatedEntry(ENTRY_TEXT);
+
+    }
 }
