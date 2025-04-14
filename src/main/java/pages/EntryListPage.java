@@ -99,13 +99,18 @@ public class EntryListPage extends BasePage {
      * @param text the text
      * @return the entry list page
      */
-    public EntryListPage searchByText(String text) {
+    public EntryListPage searchByEntryText(String text) {
         SEARCH_FIELD.setValue(text);
         SEARCH_BUTTON.click();
         log.info("Search by '{}' text", text);
         return new EntryListPage();
     }
 
+    /**
+     * Search by tag on entry list page.
+     *
+     * @return the entry list page
+     */
     public EntryListPage searchByTag() {
         TAG_FIELD.click();
         return new EntryListPage();

@@ -8,6 +8,7 @@ import pages.EntryListPage;
 import pages.EntryPage;
 
 import static com.codeborne.selenide.Condition.*;
+
 @Log4j2
 public class EntrySteps {
 
@@ -48,24 +49,24 @@ public class EntrySteps {
     }
 
     @Step("Check body text for first entry")
-    public void checkFirstEntryText (String expectedResult) {
+    public void checkFirstEntryText(String expectedResult) {
         Assert.assertEquals(entryListPage.getFirstEntryBody().getText(), expectedResult);
     }
 
     @Step("Check entries list size")
-    public EntrySteps checkEntriesListSize (int size) {
+    public EntrySteps checkEntriesListSize(int size) {
         entryListPage.checkEntriesListSize(size);
         return this;
     }
 
     @Step("Search by text")
-    public EntrySteps searchByText (String text) {
-        entryListPage.searchByText(text);
+    public EntrySteps searchByText(String text) {
+        entryListPage.searchByEntryText(text);
         return this;
     }
 
     @Step("Check first entry contains text")
-    public void checkFirstEntryContainsText (String text) {
+    public void checkFirstEntryContainsText(String text) {
         Assert.assertTrue(entryListPage.getFirstEntryBody().getText().contains(text));
     }
 

@@ -36,6 +36,12 @@ public class EntryPage extends BasePage{
         return new EntryPage();
     }
 
+    /**
+     * Create tag on entry page.
+     *
+     * @param text the text
+     * @return the entry page
+     */
     public EntryPage createTag(String text) {
         TAG_INPUT.click();
         TAG_INPUT.setValue(text);

@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,8 +26,6 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 @Listeners(TestListener.class)
 public class BaseTest implements ITestConstants {
-
-    SoftAssert softAssert = new SoftAssert();
 
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
@@ -73,6 +72,6 @@ public class BaseTest implements ITestConstants {
         if (!entryListPage.getEntriesList().isEmpty()) {
             entryListPage.deleteAllEntries();
         }
-        //WebDriverRunner.closeWebDriver();
+        WebDriverRunner.closeWebDriver();
     }
 }
