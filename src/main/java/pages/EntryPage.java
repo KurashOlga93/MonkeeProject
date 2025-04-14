@@ -16,6 +16,8 @@ public class EntryPage extends BasePage{
     private static final SelenideElement SAVE_ENTRY_BUTTON = $x("//*[@title='Save']");
     private static final SelenideElement ENTRY_TOOLBAR = $x("//*[@class='cke_top']");
     private static final SelenideElement DATE_TIME_FIELD = $x("//*[@class='ng-binding']");
+    private static final SelenideElement TAG_INPUT = $x("//*[@id='new-tag']");
+    private static final SelenideElement SAVE_TAG_BUTTON = $x("//*[@id='assign-new-tag']");
 
     public EntryPage() {
     }
@@ -34,6 +36,14 @@ public class EntryPage extends BasePage{
         return new EntryPage();
     }
 
+    public EntryPage createTag(String text) {
+        TAG_INPUT.click();
+        TAG_INPUT.setValue(text);
+        SAVE_TAG_BUTTON.click();
+        log.info("Create a tag with name: '{}'", text);
+        return new EntryPage();
+    }
+
     /**
      * Save entry on entry page.
      *
@@ -45,6 +55,11 @@ public class EntryPage extends BasePage{
         return new EntryListPage();
     }
 
+    /**
+     * Gets date and time when creating entry.
+     *
+     * @return the date and time when creating entry
+     */
     public String getDateAndTimeWhenCreatingEntry() {
         String creatingData = DATE_TIME_FIELD.getText();
         log.info("Date and time of creating entry '{}'", creatingData);

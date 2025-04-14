@@ -1,18 +1,14 @@
 package steps;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.impl.Waiter;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import pages.EntryListPage;
 import pages.EntryPage;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$x;
-
+import static com.codeborne.selenide.Condition.*;
+@Log4j2
 public class EntrySteps {
 
     EntryPage entryPage;
@@ -74,12 +70,36 @@ public class EntrySteps {
     }
 
     @Step("Check date and time of created entry")
-    public void checkDateAndTimeOfCreatedEntry (String text) {
+    public void checkDateAndTimeOfCreatedEntry(String text) {
         entryListPage.openEntryPage();
         entryPage.fillEntryForm(text);
         String creatingData = entryPage.getDateAndTimeWhenCreatingEntry();
         entryPage.saveEntry();
-        SelenideElement element = entryListPage.getDateAndTimeOfCreatedEntry(creatingData);
-        element.shouldBe(exist, Duration.ofSeconds(5));
+        SelenideElement el = entryListPage.getEntryCreatedDate();
+        el.shouldBe(visible);
+        el.shouldHave(attribute("title", creatingData));
+    }
+
+    @Step("Create an entry with tag and check that new entry contains created tag")
+    public void createEntryWithTag(String text, String tag, String expectedResult) {
+        entryListPage.openEntryPage();
+        entryPage.fillEntryForm(text);
+        entryPage.createTag(tag);
+        entryPage.saveEntry();
+        Assert.assertTrue(entryListPage.getEntryTag().getText().contains(expectedResult));
+        log.info("Created entry have a tag with name '{}'", entryListPage.getEntryTag().getText());
+    }
+
+    @Step("Create an entry with tag, and second entry without tag, search entry by tag")
+    public EntrySteps searchEntriesByTag(String text, String tag) {
+        entryListPage.openEntryPage();
+        entryPage.fillEntryForm(text);
+        entryPage.createTag(tag);
+        entryPage.saveEntry();
+        entryListPage.openEntryPage();
+        entryPage.fillEntryForm(text);
+        entryPage.saveEntry();
+        entryListPage.searchByTag();
+        return this;
     }
 }

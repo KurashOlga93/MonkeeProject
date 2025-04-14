@@ -1,7 +1,6 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,6 +14,7 @@ import pages.EntryPage;
 import pages.LoginPage;
 import steps.EntrySteps;
 import steps.LoginSteps;
+import steps.SettingsSteps;
 import utils.PropertyReader;
 
 import java.util.HashMap;
@@ -38,6 +38,7 @@ public class BaseTest implements ITestConstants {
     protected EntryListPage entryListPage;
     protected EntryPage entryPage;
     protected EntrySteps entrySteps;
+    protected SettingsSteps settingsSteps;
 
     public void initPages() {
         loginSteps = new LoginSteps();
@@ -45,6 +46,7 @@ public class BaseTest implements ITestConstants {
         entryListPage = new EntryListPage();
         entryPage = new EntryPage();
         entrySteps = new EntrySteps();
+        settingsSteps = new SettingsSteps();
     }
 
     @BeforeMethod

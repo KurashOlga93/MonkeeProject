@@ -39,7 +39,7 @@ public class EntriesTests extends BaseTest implements ITestConstants {
     }
 
     @Test(description = "Login user, create two different entries, search the text of one of the entries and check that it was found")
-    public void searchFieldTest() {
+    public void searchEntryTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL)
                 .createEntryAndSave(ENTRY_TEXT)
                 .createEntryAndSave(CHANGE_ENTRY_TEXT)
@@ -48,10 +48,22 @@ public class EntriesTests extends BaseTest implements ITestConstants {
                 .checkFirstEntryContainsText("something");
     }
 
-    @Test(description = "")
-    public void checkDateAndTimeOfEntry() {
+    @Test(description = "Login, create entry and save date/time when entry created, check date/time of entry in entries list")
+    public void checkDateAndTimeOfEntryTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.checkDateAndTimeOfCreatedEntry(ENTRY_TEXT);
+    }
 
+    @Test(description = "Login, create entry with tag, check that entry contains a created tag")
+    public void checkEntryTagTest() {
+        loginSteps.login(USER, PASSWORD, LOGIN_URL);
+        entrySteps.createEntryWithTag(ENTRY_TEXT, TAG_NAME, "Apple");
+    }
+
+    @Test(description = "Login, create entry with tag and entry without tag, search one entry by tag")
+    public void searchEntriesByTagTest() {
+        loginSteps.login(USER, PASSWORD, LOGIN_URL);
+        entrySteps.searchEntriesByTag(ENTRY_TEXT, TAG_NAME)
+                  .checkEntriesListSize(1);
     }
 }

@@ -3,5 +3,7 @@
 <suite name="Monkee Regression Test Suite" parallel="tests" thread-count="1">
     <suite-files>
         <suite-file path="monkeeLoginTests.xml" />
+        <suite-file path="monkeeEntriesTests.xml" />
+        <suite-file path="monkeeSettingsTests.xml" />
     </suite-files>
 </suite>
