@@ -71,6 +71,6 @@ public class BaseTest implements ITestConstants {
         if (!entryListPage.getEntriesList().isEmpty()) {
             entryListPage.deleteAllEntries();
         }
-        //WebDriverRunner.closeWebDriver();
+        WebDriverRunner.closeWebDriver();
     }
 }
