@@ -2,6 +2,8 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import elements.Button;
+import elements.Input;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
@@ -31,7 +33,7 @@ public class EntryPage extends BasePage{
     public EntryPage fillEntryForm(String text) {
         ENTRY_AREA.click();
         ENTRY_TOOLBAR.shouldBe(Condition.visible);
-        ENTRY_AREA.setValue(text);
+        new Input("editable").writeTextToInput(text);
         log.info("Fill entry form with text: '{}'", text);
         return new EntryPage();
     }
@@ -44,8 +46,8 @@ public class EntryPage extends BasePage{
      */
     public EntryPage createTag(String text) {
         TAG_INPUT.click();
-        TAG_INPUT.setValue(text);
-        SAVE_TAG_BUTTON.click();
+        new Input("new-tag").writeTextToInput(text);
+        new Button().click(SAVE_TAG_BUTTON);
         log.info("Create a tag with name: '{}'", text);
         return new EntryPage();
     }
@@ -56,8 +58,8 @@ public class EntryPage extends BasePage{
      * @return the entry list page
      */
     public EntryListPage saveEntry() {
-        SAVE_ENTRY_BUTTON.click();
-        BACK_TO_OVERVIEW_BUTTON.click();
+        new Button().click(SAVE_ENTRY_BUTTON);
+        new Button().click(BACK_TO_OVERVIEW_BUTTON);
         return new EntryListPage();
     }
 

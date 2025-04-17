@@ -57,7 +57,7 @@ public class EntriesTests extends BaseTest implements ITestConstants {
     @Test(description = "Login, create entry with tag, check that entry contains a created tag")
     public void checkEntryTagTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
-        entrySteps.createEntryWithTag(ENTRY_TEXT, TAG_NAME, "Apple");
+        entrySteps.checkNewEntryWithTag(ENTRY_TEXT, TAG_NAME, "Apple");
     }
 
     @Test(description = "Login, create entry with tag and entry without tag, search one entry by tag")

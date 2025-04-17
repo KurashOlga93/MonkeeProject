@@ -82,7 +82,7 @@ public class EntrySteps {
     }
 
     @Step("Create an entry with tag and check that new entry contains created tag")
-    public void createEntryWithTag(String text, String tag, String expectedResult) {
+    public void checkNewEntryWithTag(String text, String tag, String expectedResult) {
         entryListPage.openEntryPage();
         entryPage.fillEntryForm(text);
         entryPage.createTag(tag);

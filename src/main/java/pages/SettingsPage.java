@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import elements.Button;
 import lombok.extern.log4j.Log4j2;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -34,7 +35,7 @@ public class SettingsPage {
      * @return the settings page
      */
     public SettingsPage goToSettingsPage() {
-        SETTINGS_BUTTON.click();
+        new Button().click(SETTINGS_BUTTON);
         isOpened();
         return this;
     }
@@ -47,7 +48,7 @@ public class SettingsPage {
      */
     public SettingsPage changeLanguage(String language) {
         LANGUAGE_DROPDOWN.selectOption(language);
-        SUBMIT_BUTTON.click();
+        new Button().click(SUBMIT_BUTTON);
         log.info("Language changed on: '{}'", language);
         return this;
     }
@@ -58,8 +59,13 @@ public class SettingsPage {
      * @return the alert success message text
      */
     public String getAlertSuccessMessageText() {
-        String alertSuccessText = ALERT_SUCCESS.getText();
-        log.info("Alert success message text after changing language is: '{}'", alertSuccessText);
-        return alertSuccessText;
+        try {
+            String alertSuccessText = ALERT_SUCCESS.getText();
+            log.info("Alert success message text after changing language is: '{}'", alertSuccessText);
+            return alertSuccessText;
+        } catch (Exception e) {
+            log.error("Failed to get alert success message.", e);
+            return "";
+        }
     }
 }

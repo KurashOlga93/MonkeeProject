@@ -4,16 +4,19 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import elements.Button;
+import elements.Input;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
 @Getter
+@NoArgsConstructor
 public class EntryListPage extends BasePage {
 
-    private static final SelenideElement SEARCH_FIELD = $x("//*[@type='search']");
     private static final SelenideElement SEARCH_BUTTON = $x("//*[@title='Search']");
     private static final SelenideElement FIRST_ENTRY_CHECKBOX = $x("(//*[@type='checkbox'])[2]");
     private static final SelenideElement ALL_ENTRIES_CHECKBOX = $x("(//*[@type='checkbox'])[1]");
@@ -26,28 +29,13 @@ public class EntryListPage extends BasePage {
     private final SelenideElement entryTag = $x("//*[@class='entries__tags']");
     private final SelenideElement TAG_FIELD = $x("//*[@class='tag ng-binding']");
 
-
-    public EntryListPage() {
-    }
-
     /**
-     * Is opened entry list page.
-     *
-     * @return the entry list page
-     */
-    public EntryListPage isOpened() {
-        createEntryButton.shouldBe(Condition.visible);
-        return this;
-    }
-
-    /**
-     * Open entry page entry page.
+     * Open entry page.
      *
      * @return the entry page
      */
     public EntryPage openEntryPage() {
-        isOpened();
-        createEntryButton.click();
+        new Button().click(createEntryButton);
         log.info("Click 'Create new entry' button for open entry page");
         return new EntryPage();
     }
@@ -60,18 +48,17 @@ public class EntryListPage extends BasePage {
     public void checkEntriesListSize(int size) {
         entriesList.shouldHave(CollectionCondition.size(size));
         log.info("Actual entries list size is '{}'", size);
-
     }
 
     /**
-     * Delete first entry entry list page.
+     * Delete first entry from entry list page.
      *
      * @return the entry list page
      */
     public EntryListPage deleteFirstEntry() {
         FIRST_ENTRY_CHECKBOX.click();
         DELETE_ENTRIES_BUTTON.shouldBe(Condition.enabled);
-        DELETE_ENTRIES_BUTTON.click();
+        new Button().click(DELETE_ENTRIES_BUTTON);
         switchTo().alert().accept();
         DELETE_ENTRIES_BUTTON.shouldNotBe(Condition.disabled);
         log.info("Delete first entry");
@@ -86,7 +73,7 @@ public class EntryListPage extends BasePage {
     public EntryListPage deleteAllEntries() {
         ALL_ENTRIES_CHECKBOX.click();
         DELETE_ENTRIES_BUTTON.shouldBe(Condition.enabled);
-        DELETE_ENTRIES_BUTTON.click();
+        new Button().click(DELETE_ENTRIES_BUTTON);
         switchTo().alert().accept();
         DELETE_ENTRIES_BUTTON.shouldNotBe(Condition.disabled);
         log.info("Delete all entries");
@@ -100,8 +87,8 @@ public class EntryListPage extends BasePage {
      * @return the entry list page
      */
     public EntryListPage searchByEntryText(String text) {
-        SEARCH_FIELD.setValue(text);
-        SEARCH_BUTTON.click();
+        new Input("appendedInputButton").writeTextToInput(text);
+        new Button().click(SEARCH_BUTTON);
         log.info("Search by '{}' text", text);
         return new EntryListPage();
     }
@@ -112,7 +99,7 @@ public class EntryListPage extends BasePage {
      * @return the entry list page
      */
     public EntryListPage searchByTag() {
-        TAG_FIELD.click();
+        new Button().click(TAG_FIELD);
         return new EntryListPage();
     }
 }

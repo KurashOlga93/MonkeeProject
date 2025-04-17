@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import org.testng.asserts.SoftAssert;
 import pages.EntryListPage;
 import pages.EntryPage;
 import pages.LoginPage;
@@ -72,6 +71,6 @@ public class BaseTest implements ITestConstants {
         if (!entryListPage.getEntriesList().isEmpty()) {
             entryListPage.deleteAllEntries();
         }
-        WebDriverRunner.closeWebDriver();
+        //WebDriverRunner.closeWebDriver();
     }
 }
