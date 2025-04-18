@@ -21,13 +21,13 @@ public class EntryListPage extends BasePage {
     private static final SelenideElement FIRST_ENTRY_CHECKBOX = $x("(//*[@type='checkbox'])[2]");
     private static final SelenideElement ALL_ENTRIES_CHECKBOX = $x("(//*[@type='checkbox'])[1]");
     private static final SelenideElement DELETE_ENTRIES_BUTTON = $x("//*[@id='delete-entries']");
-    private static final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
-    private static final ElementsCollection entriesList = $$x("//*[contains(@class, 'entries__entry-container')]");
-    private static final SelenideElement TAG_FIELD = $x("//*[@class='tag ng-binding']");
+    private final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
     private final SelenideElement entriesBody = $x("//*[@class=' entries__body']");
     private final SelenideElement firstEntryBody = $x("(//*[@class=' entries__body'])[1]");
+    private final ElementsCollection entriesList = $$x("//*[contains(@class, 'entries__entry-container')]");
     private final SelenideElement entryCreatedDate = $x("//div[@ng-attr-title='{{entry.fullDate}}']");
     private final SelenideElement entryTag = $x("//*[@class='entries__tags']");
+    private final SelenideElement TAG_FIELD = $x("//*[@class='tag ng-binding']");
 
     /**
      * Open entry page.

@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     public static final SelenideElement PASSWORD_FIELD_ERROR_MESSAGE = $x("//*[@class='password-toggle-wrapper']/following-sibling::div");
     public static final SelenideElement ALERT_DANGER = $x("//*[@class='alert alert-danger']");
     public static final SelenideElement LOGOUT_BUTTON = $x("//*[text()='Logout']");
-    private static final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
+    private final SelenideElement createEntryButton = $x("//*[@id='create-entry']");
     private final SelenideElement loginHeaderText = $x("//*[@class='login__heading']");
 
 
