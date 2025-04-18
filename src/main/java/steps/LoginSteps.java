@@ -39,25 +39,25 @@ public class LoginSteps {
     }
 
     @Step("Check validation message text for user field")
-    public LoginSteps checkUserFieldValidation (String expectedResult) {
+    public LoginSteps checkUserFieldValidation(String expectedResult) {
         Assert.assertEquals(loginPage.getUserFieldErrorMessageText(), expectedResult);
         return this;
     }
 
     @Step("Check validation message text for password field")
-    public LoginSteps checkPasswordFieldValidation (String expectedResult) {
+    public LoginSteps checkPasswordFieldValidation(String expectedResult) {
         Assert.assertEquals(loginPage.getPasswordFieldErrorMessageText(), expectedResult);
         return this;
     }
 
     @Step("Check alert message text for login fields")
-    public LoginSteps checkAlertValidationText (String expectedResult) {
+    public LoginSteps checkAlertValidationText(String expectedResult) {
         Assert.assertEquals(loginPage.getErrorMessageAlertText(), expectedResult);
         return this;
     }
 
     @Step("Check login header text")
-    public LoginSteps checkLoginHeaderText () {
+    public LoginSteps checkLoginHeaderText() {
         loginPage.getLoginHeaderText().shouldHave(Condition.text("Login"));
         return this;
     }

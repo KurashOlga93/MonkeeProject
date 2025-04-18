@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import waiters.Waiter;
 
 import static com.codeborne.selenide.Selenide.*;
+
 @Getter
 @Log4j2
 public class LoginPage extends BasePage {
@@ -30,7 +31,7 @@ public class LoginPage extends BasePage {
      * @param url the url
      * @return the login page
      */
-    public LoginPage openLoginPage(String url){
+    public LoginPage openLoginPage(String url) {
         open(url);
         log.info("Open login page with URL '{}'", url);
         return this;
@@ -72,9 +73,9 @@ public class LoginPage extends BasePage {
      * @return the login page
      */
     public LoginPage loginWithError(String username, String password) {
-      fillLoginForm(username, password);
-      return new LoginPage();
-  }
+        fillLoginForm(username, password);
+        return new LoginPage();
+    }
 
     /**
      * Logout login page.
@@ -94,10 +95,10 @@ public class LoginPage extends BasePage {
      */
     public String getUserFieldErrorMessageText() {
         try {
-        String userFieldErrorMessage = USER_FIELD_ERROR_MESSAGE.getText();
-        log.info("Error message text for user field is: '{}'", userFieldErrorMessage);
-        return userFieldErrorMessage;
-    } catch (Exception e) {
+            String userFieldErrorMessage = USER_FIELD_ERROR_MESSAGE.getText();
+            log.info("Error message text for user field is: '{}'", userFieldErrorMessage);
+            return userFieldErrorMessage;
+        } catch (Exception e) {
             log.error("Failed to get login field error message.", e);
             return "";
         }
@@ -110,10 +111,10 @@ public class LoginPage extends BasePage {
      */
     public String getPasswordFieldErrorMessageText() {
         try {
-        String passwordFieldErrorMessage = PASSWORD_FIELD_ERROR_MESSAGE.getText();
-        log.info("Error message text for password field is: '{}'", passwordFieldErrorMessage);
-        return passwordFieldErrorMessage;
-    } catch (Exception e) {
+            String passwordFieldErrorMessage = PASSWORD_FIELD_ERROR_MESSAGE.getText();
+            log.info("Error message text for password field is: '{}'", passwordFieldErrorMessage);
+            return passwordFieldErrorMessage;
+        } catch (Exception e) {
             log.error("Failed to get password field error message.", e);
             return "";
         }
@@ -126,10 +127,10 @@ public class LoginPage extends BasePage {
      */
     public String getErrorMessageAlertText() {
         try {
-        String alertErrorMessageText = ALERT_DANGER.getText();
-        log.info("Alert error message text for is: '{}'", alertErrorMessageText);
-        return alertErrorMessageText;
-    } catch (Exception e) {
+            String alertErrorMessageText = ALERT_DANGER.getText();
+            log.info("Alert error message text for is: '{}'", alertErrorMessageText);
+            return alertErrorMessageText;
+        } catch (Exception e) {
             log.error("Failed to get alert error message.", e);
             return "";
         }

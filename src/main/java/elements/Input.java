@@ -1,6 +1,7 @@
 package elements;
 
 import com.codeborne.selenide.Condition;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class Input {
@@ -12,7 +13,7 @@ public class Input {
         this.label = label;
     }
 
-    public Input writeTextToInput(String text){
+    public Input writeTextToInput(String text) {
         $x(String.format(INPUT_LOCATOR, label)).shouldBe(Condition.visible).setValue(text);
         return this;
     }

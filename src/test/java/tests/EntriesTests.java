@@ -64,6 +64,6 @@ public class EntriesTests extends BaseTest implements ITestConstants {
     public void searchEntriesByTagTest() {
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         entrySteps.searchEntriesByTag(ENTRY_TEXT, TAG_NAME)
-                  .checkEntriesListSize(1);
+                .checkEntriesListSize(1);
     }
 }

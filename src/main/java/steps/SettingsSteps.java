@@ -15,7 +15,7 @@ public class SettingsSteps {
     @Step("Go to settings page, change language and check alert")
     public SettingsSteps goToSettingsAndChangeLanguage(String language, String expectedResult) {
         settingsPage.goToSettingsPage()
-                    .changeLanguage(language);
+                .changeLanguage(language);
         Assert.assertEquals(settingsPage.getAlertSuccessMessageText(), expectedResult);
         return new SettingsSteps();
     }

@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 @Log4j2
 @Getter
-public class EntryPage extends BasePage{
+public class EntryPage extends BasePage {
 
     private static final SelenideElement ENTRY_AREA = $x("//*[@id='editable']");
     private static final SelenideElement BACK_TO_OVERVIEW_BUTTON = $x("//*[@id='back-to-overview']");
