@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import config.TestConfig;
 import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,8 +27,10 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 @Listeners(TestListener.class)
 public class BaseTest implements ITestConstants {
 
-    public static String USER = PropertyReader.getProperty("user");
-    public static String PASSWORD = PropertyReader.getProperty("password");
+    //public static String USER = PropertyReader.getProperty("user");
+    public static String USER = TestConfig.getEnvConfig().user();
+    //public static String PASSWORD = PropertyReader.getProperty("password");
+    public static String PASSWORD = TestConfig.getEnvConfig().password();
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
     public static String ENTRIES_URL = PropertyReader.getProperty("entriesUrl");
 
